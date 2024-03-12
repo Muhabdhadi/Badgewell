@@ -6,21 +6,21 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {SignUpComponent} from "./sign-up/sign-up.component";
-import {MatInputModule} from "@angular/material/input";
+import {HttpClientModule} from "@angular/common/http";
+import * as fromAuth from "./auth/store/auth-reducers";
+import {AuthEffects} from "./auth/store/auth-effects";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SignUpComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({auth: fromAuth._authReducer}),
+    EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
-    MatInputModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
