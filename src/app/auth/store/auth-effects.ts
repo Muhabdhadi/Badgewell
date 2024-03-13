@@ -1,5 +1,4 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {Store} from "@ngrx/store";
 import * as AuthActions from './auth.actions';
 import {catchError, EMPTY, map, mergeMap, of} from "rxjs";
 import {AuthService} from "../auth.service";
