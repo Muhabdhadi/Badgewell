@@ -1,11 +1,13 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as AuthActions from './auth.actions';
-import {catchError, map, mergeMap, of, switchMap, tap} from "rxjs";
+import {catchError, map, of, switchMap, tap} from "rxjs";
 import {AuthService} from "../auth.service";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {authSuccess} from "./auth.actions";
 import {Router} from "@angular/router";
+import {LoginResponseInterface} from "../interfaces/login-response.interface";
+import {loginSuccess} from "./auth.actions";
+import {AuthHelperService} from "../auth-helper.service";
 
 @Injectable()
 export class AuthEffects {
@@ -24,11 +26,34 @@ export class AuthEffects {
                     })
                 )
         })
+    ));
+
+    login = createEffect(() => this.actions$.pipe(
+        ofType(AuthActions.loginStart),
+        switchMap((loginPayload) => {
+            return this.authService.login(loginPayload)
+                .pipe(
+
+                    tap((loginResponse) => {
+                        localStorage.setItem('loginTokens', JSON.stringify(loginResponse));
+                    }),
+
+                    map((loginResponse) => {
+                        return this.authHelperService.handleTokensExpirationDates(loginResponse);
+                    }),
+
+                    catchError((authError: HttpErrorResponse) => {
+                        return of(AuthActions.authFailed({message: authError.message}))
+                    })
+                )
+        })
     ))
+
 
     constructor(
                 private actions$: Actions,
                 private router: Router,
+                private authHelperService: AuthHelperService,
                 private authService: AuthService) {
     }
 }

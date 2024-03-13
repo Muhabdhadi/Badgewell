@@ -18,3 +18,19 @@ export const authSuccess = createAction('[Auth] Auth Success',
         message: string
     }>()
 );
+
+export const loginStart = createAction('[Auth] Login Start',
+    props<{
+        username: string,
+        password: string
+    }>()
+);
+
+export const loginSuccess = createAction('[Auth] Login Success',
+    props<{
+        accessToken: string,
+        accessTokenExpirationDate: Date,
+        refreshToken: string,
+        refreshTokenExpirationDate: Date
+    }>()
+);
