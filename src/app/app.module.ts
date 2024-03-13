@@ -9,10 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import * as fromAuth from "./auth/store/auth-reducers";
 import {AuthEffects} from "./auth/store/auth-effects";
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
