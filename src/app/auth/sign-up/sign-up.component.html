@@ -18,13 +18,15 @@
                             Please login to access your Spaces Dashboard
                         </p>
 
-                        <form>
+                        <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
 
                             <div class="form-group">
                                 <label for="Username">Username</label>
                                 <input
+                                        [class.invalid-control]="(authForm.get('username')?.hasError('minlength') || authForm.get('username')?.hasError('required')) && authForm.get('username')?.touched"
                                         type="email"
                                         class="form-control"
+                                        formControlName="username"
                                         id="Username"
                                         placeholder="Username...."
                                 >
@@ -34,18 +36,25 @@
                             <div class="form-group">
                                 <label for="Password">Password</label>
                                 <input
+                                        [class.invalid-control]="(authForm.get('password')?.hasError('minlength') || authForm.get('password')?.hasError('required')) && authForm.get('password')?.touched"
                                         type="password"
                                         class="form-control"
+                                        formControlName="password"
                                         id="Password"
                                         placeholder="********">
                             </div>
 
                             <div class="login-actions">
 
-                                <p class="login-forget">Have an Account? Sign in</p>
+                                <p class="login-forget">Have an Account?
+
+                                    <a *ngIf="!isLoginMode" routerLink="/login">Sign in</a>
+
+                                    <a *ngIf="isLoginMode" routerLink="/sign-up">Sign up</a>
+                                </p>
 
                                 <div>
-                                    <button (click)="onSignUp()" class="login-btn">Sign Up</button>
+                                    <button [disabled]="authForm.invalid" type="submit" class="login-btn">{{isLoginMode ? 'Login' : 'Sign up'}}</button>
                                 </div>
 
                             </div>

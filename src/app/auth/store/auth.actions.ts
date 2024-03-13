@@ -2,7 +2,7 @@ import {createAction, props} from "@ngrx/store";
 
 export const signup = createAction('[Auth] Sign up',
     props<{
-        userName: string,
+        username: string,
         password: string
     }>()
 );

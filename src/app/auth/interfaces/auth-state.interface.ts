@@ -1,5 +1,6 @@
 export interface AuthStateInterface {
     message: string,
     isLoggedIn: boolean,
-    statusCode: number
+    statusCode: number,
+    isLoading: boolean
 }

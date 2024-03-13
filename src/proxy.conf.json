@@ -1,0 +1,9 @@
+{
+    "/api": {
+        "target": "https://interview-task-api-rvq7gueufa-oa.a.run.app",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
+

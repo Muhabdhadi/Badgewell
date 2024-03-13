@@ -11,7 +11,7 @@ export class AuthEffects {
     signUp = createEffect(() => this.actions$.pipe(
         ofType(AuthActions.signup),
         mergeMap((authPayload) => {
-            return this.authService.signUp({username: authPayload.userName, password: authPayload.password})
+            return this.authService.signUp({username: authPayload.username, password: authPayload.password})
                 .pipe(
                     map((authResponse) => {
                         return AuthActions.signUpResponse({statusCode: authResponse.status, message: 'Success' });

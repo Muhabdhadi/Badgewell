@@ -1,15 +1,16 @@
-import {Action, createReducer, on} from "@ngrx/store";
+import {createReducer, on} from "@ngrx/store";
 import * as AuthActions from './auth.actions';
-import {AuthStateInterface} from "../auth-state.interface";
+import {AuthStateInterface} from "../interfaces/auth-state.interface";
 
-const initState = {
+const authState: AuthStateInterface = {
     message: '',
     isLoggedIn: false,
-    statusCode: 0
+    statusCode: 0,
+    isLoading: false
 }
 
 export const _authReducer = createReducer(
-    initState,
+    authState,
 
     on(AuthActions.signUpResponse,
         (state, action) => ({
