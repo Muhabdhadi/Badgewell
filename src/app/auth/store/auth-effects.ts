@@ -33,6 +33,7 @@ export class AuthEffects {
                 .pipe(
 
                     tap((loginResponse) => {
+                        this.router.navigate(['/contacts']);
                         localStorage.setItem('loginTokens', JSON.stringify(loginResponse));
                     }),
 
