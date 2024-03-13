@@ -1,6 +1,6 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as AuthActions from './auth.actions';
-import {catchError, EMPTY, map, mergeMap, of} from "rxjs";
+import {catchError, map, mergeMap, of} from "rxjs";
 import {AuthService} from "../auth.service";
 import {HttpResponse} from "@angular/common/http";
 import {Injectable} from "@angular/core";
