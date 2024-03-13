@@ -3,20 +3,22 @@ import * as AuthActions from './auth.actions';
 import {AuthStateInterface} from "../interfaces/auth-state.interface";
 
 const authState: AuthStateInterface = {
-    message: '',
-    isLoggedIn: false,
-    statusCode: 0,
-    isLoading: false
+    authErrorMessage: '',
 }
 
 export const _authReducer = createReducer(
     authState,
 
-    on(AuthActions.signUpResponse,
+    on(AuthActions.authFailed,
         (state, action) => ({
             ...state,
-            message: action.message,
-            statusCode: action.statusCode,
-            isLoggedIn: action.statusCode === 200
-    })),
+            authErrorMessage: action.message
+        })
+    ),
+
+    on(AuthActions.authSuccess,
+        (state, actions) => ({
+            ...state
+        })
+    )
 )

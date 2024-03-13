@@ -7,8 +7,14 @@ export const signup = createAction('[Auth] Sign up',
     }>()
 );
 
-export const signUpResponse = createAction('[Auth] Sign up response',
+export const authFailed = createAction('[Auth] Auth Failed',
     props<{
-        statusCode: number,
         message: string
-    }>());
+    }>()
+);
+
+export const authSuccess = createAction('[Auth] Auth Success',
+    props<{
+        message: string
+    }>()
+);

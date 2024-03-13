@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import * as AuthActions from '../store/auth.actions';
 import {AppReducer} from "../../app-reducer";
@@ -12,7 +12,7 @@ import {AuthInterface} from "../interfaces/auth.interface";
     templateUrl: './sign-up.component.html',
     styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit, OnDestroy {
+export class SignUpComponent implements OnInit {
     authStoreSub!: Subscription;
     isLoginMode = false;
     authForm = this.fb.group({
@@ -26,23 +26,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.authStoreSub = this.store$.select('auth').subscribe({
-            next: (auth) => {
-                if (auth.statusCode === 201) {
-                    this.router.navigate(['/login'])
-                }
-            }
-        });
-
         this.activatedRoute.url.subscribe({
             next: (url) => {
                 this.isLoginMode = url[0].path === 'login';
             }
         })
-    }
-
-    ngOnDestroy() {
-        this.authStoreSub.unsubscribe();
     }
 
 

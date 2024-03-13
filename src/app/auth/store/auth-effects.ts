@@ -1,22 +1,26 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as AuthActions from './auth.actions';
-import {catchError, map, mergeMap, of} from "rxjs";
+import {catchError, map, mergeMap, of, switchMap, tap} from "rxjs";
 import {AuthService} from "../auth.service";
-import {HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import {authSuccess} from "./auth.actions";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthEffects {
     signUp = createEffect(() => this.actions$.pipe(
         ofType(AuthActions.signup),
-        mergeMap((authPayload) => {
+        switchMap((authPayload) => {
             return this.authService.signUp({username: authPayload.username, password: authPayload.password})
                 .pipe(
+                    tap(() => this.router.navigate(['/login'])),
+
                     map((authResponse) => {
-                        return AuthActions.signUpResponse({statusCode: authResponse.status, message: 'Success' });
+                        return AuthActions.authSuccess({message: 'You have Successfully Registered' });
                     }),
-                    catchError((authResponse: HttpResponse<any>) => {
-                        return of(AuthActions.signUpResponse({statusCode: authResponse.status, message: 'Error'}))
+                    catchError((authResponse: HttpErrorResponse) => {
+                        return of(AuthActions.authFailed({message: authResponse.message}))
                     })
                 )
         })
@@ -24,6 +28,7 @@ export class AuthEffects {
 
     constructor(
                 private actions$: Actions,
+                private router: Router,
                 private authService: AuthService) {
     }
 }
