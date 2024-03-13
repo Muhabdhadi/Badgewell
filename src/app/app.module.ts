@@ -9,18 +9,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import * as fromAuth from "./auth/store/auth-reducers";
 import {AuthEffects} from "./auth/store/auth-effects";
-import { HeaderComponent } from './shared/header/header.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({auth: fromAuth._authReducer}),
     EffectsModule.forRoot([AuthEffects]),
+    SharedModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],
