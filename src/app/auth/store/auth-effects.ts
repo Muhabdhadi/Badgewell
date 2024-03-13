@@ -5,8 +5,6 @@ import {AuthService} from "../auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
-import {LoginResponseInterface} from "../interfaces/login-response.interface";
-import {loginSuccess} from "./auth.actions";
 import {AuthHelperService} from "../auth-helper.service";
 
 @Injectable()
