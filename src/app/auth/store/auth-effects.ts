@@ -16,7 +16,7 @@ export class AuthEffects {
                 .pipe(
                     tap(() => this.router.navigate(['/login'])),
 
-                    map((authResponse) => {
+                    map(() => {
                         return AuthActions.authSuccess({message: 'You have Successfully Registered' });
                     }),
                     catchError((authResponse: HttpErrorResponse) => {

@@ -21,7 +21,7 @@ export const _authReducer = createReducer(
     ),
 
     on(AuthActions.authSuccess,
-        (state, actions) => ({
+        (state) => ({
             ...state
         })
     ),

@@ -1,5 +1,7 @@
 import {AuthStateInterface} from "./auth/interfaces/auth-state.interface";
+import {ContactsStateInterface} from "./contacts/interfaces/contacts-state.interface";
 
 export interface AppReducer {
-    auth: AuthStateInterface
+    auth: AuthStateInterface,
+    contacts: ContactsStateInterface
 }
