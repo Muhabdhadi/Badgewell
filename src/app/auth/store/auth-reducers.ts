@@ -38,5 +38,15 @@ export const _authReducer = createReducer(
             refreshToken: action.refreshToken,
             refreshTokenExpirationDate: action.refreshTokenExpirationDate
         })
-    )
+    ),
+
+    on(AuthActions.logout, (state) => ({
+        ...state,
+        authErrorMessage: '',
+        authSuccessMessage: '',
+        accessToken: '',
+        accessTokenExpirationDate: null,
+        refreshToken: '',
+        refreshTokenExpirationDate: null
+    }))
 )

@@ -34,3 +34,5 @@ export const loginSuccess = createAction('[Auth] Login Success',
         refreshTokenExpirationDate: Date
     }>()
 );
+
+export const logout = createAction('[Auth] Logout');
