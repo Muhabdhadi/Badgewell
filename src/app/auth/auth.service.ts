@@ -23,4 +23,8 @@ export class AuthService {
         return this.http.post<LoginResponseInterface>('/api/auth/login', loginPayload);
     }
 
+    refreshToken(token: string): Observable<LoginResponseInterface> {
+        return this.http.post<LoginResponseInterface>('/api/auth/refresh-token', {refreshToken :token});
+    }
+
 }

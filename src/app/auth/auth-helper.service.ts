@@ -7,6 +7,9 @@ import * as AuthActions from "./store/auth.actions";
 })
 export class AuthHelperService {
     handleTokensExpirationDates(loginResponsePayload: LoginResponseInterface) {
+
+        this.saveTokens(loginResponsePayload);
+
         const todayDateMilliSeconds = new Date().getTime();
 
         const accessTokenExpirationDate = new Date(todayDateMilliSeconds + 900000);
@@ -19,5 +22,9 @@ export class AuthHelperService {
             accessTokenExpirationDate: accessTokenExpirationDate,
             refreshTokenExpirationDate: refreshTokenExpirationDate
         })
+    }
+
+    saveTokens(loginPayload: LoginResponseInterface) {
+        localStorage.setItem('loginTokens', JSON.stringify(loginPayload));
     }
 }

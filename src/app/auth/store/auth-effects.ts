@@ -34,7 +34,7 @@ export class AuthEffects {
 
                     tap((loginResponse) => {
                         this.router.navigate(['/contacts']);
-                        localStorage.setItem('loginTokens', JSON.stringify(loginResponse));
+                        this.authHelperService.saveTokens(loginResponse);
                     }),
 
                     map((loginResponse) => {
