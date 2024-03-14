@@ -4,6 +4,7 @@ import {AuthStateInterface} from "../interfaces/auth-state.interface";
 
 const authState: AuthStateInterface = {
     authErrorMessage: '',
+    authSuccessMessage: '',
     accessToken: '',
     accessTokenExpirationDate: null,
     refreshToken: '',
@@ -21,8 +22,10 @@ export const _authReducer = createReducer(
     ),
 
     on(AuthActions.authSuccess,
-        (state) => ({
-            ...state
+        (state, action) => ({
+            ...state,
+            authErrorMessage: '',
+            authSuccessMessage: action.message
         })
     ),
 
