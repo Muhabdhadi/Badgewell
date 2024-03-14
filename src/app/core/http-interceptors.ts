@@ -1,6 +1,6 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {catchError, concatMap, Observable, of, tap, throwError} from "rxjs";
+import {catchError, concatMap, Observable, tap, throwError} from "rxjs";
 import {LoginResponseInterface} from "../auth/interfaces/login-response.interface";
 import {AuthService} from "../auth/auth.service";
 import {AuthHelperService} from "../auth/auth-helper.service";
