@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as ContactsActions from './contacts.actions';
 import {catchError, map, of, switchMap} from "rxjs";
-import {ContactsService} from "../contacts.service";
+import {ContactsService} from "../services/contacts.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()

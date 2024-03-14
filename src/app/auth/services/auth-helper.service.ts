@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {LoginResponseInterface} from "./interfaces/login-response.interface";
-import * as AuthActions from "./store/auth.actions";
+import {LoginResponseInterface} from "../interfaces/login-response.interface";
+import * as AuthActions from "../store/auth.actions";
 
 @Injectable({
     providedIn: 'root'
