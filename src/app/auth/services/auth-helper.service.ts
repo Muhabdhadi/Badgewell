@@ -27,4 +27,8 @@ export class AuthHelperService {
     saveTokens(loginPayload: LoginResponseInterface) {
         localStorage.setItem('loginTokens', JSON.stringify(loginPayload));
     }
+
+    getToken(): LoginResponseInterface {
+        return JSON.parse(localStorage.getItem('loginTokens') as string) as LoginResponseInterface;
+    }
 }

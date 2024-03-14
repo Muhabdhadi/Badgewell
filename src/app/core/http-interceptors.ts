@@ -14,14 +14,13 @@ export class HttpInterceptors implements HttpInterceptor {
                 private router: Router) {
     }
 
-    token = JSON.parse(localStorage.getItem('loginTokens') as string) as LoginResponseInterface;
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        if (this.token?.accessToken) {
+       const token = this.authHelperService.getToken();
+        if (token?.accessToken) {
             req = req.clone({
                 setHeaders: {
-                    Authorization: 'Bearer ' + this.token.accessToken,
+                    Authorization: 'Bearer ' + token.accessToken,
                 },
             });
         }
@@ -36,7 +35,7 @@ export class HttpInterceptors implements HttpInterceptor {
     }
 
     private refreshToken(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-        return this.authService.refreshToken(this.token.refreshToken)
+        return this.authService.refreshToken(this.authHelperService.getToken().refreshToken)
             .pipe(
                 tap((loginPayload) => {
                     this.authHelperService.saveTokens(loginPayload);
