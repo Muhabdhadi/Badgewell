@@ -18,7 +18,7 @@ export class ContactListComponent implements OnInit {
 
     ngOnInit() {
 
-        this.store.dispatch(ContactsActions.fetchContacts({page: 0, size: 20 }));
+        this.store.dispatch(ContactsActions.fetchContacts({page: 1, size: 20 }));
 
         this.store.select('contacts').subscribe({
             next: (contacts) => {
@@ -28,5 +28,11 @@ export class ContactListComponent implements OnInit {
                 this.totalCount = contacts.contacts.totalCount;
             }
         })
+    }
+
+    onScroll() {
+        if(this.contactsList.length < this.totalCount) {
+            this.store.dispatch(ContactsActions.fetchContacts({page: this.page + 1, size: this.pageSize }));
+        }
     }
 }

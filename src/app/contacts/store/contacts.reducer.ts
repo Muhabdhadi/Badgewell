@@ -16,7 +16,12 @@ export const _contactsReducer = createReducer(
     on(ContactsActions.fetchContactsSuccess,
         (state, action) => ({
             ...state,
-            contacts: action.contactsResponse
+            contacts: {
+                data: [...state.contacts.data, ...action.contactsResponse.data],
+                pageSize: action.contactsResponse.pageSize,
+                page: action.contactsResponse.page,
+                totalCount: action.contactsResponse.totalCount
+            }
         }))
 )
 

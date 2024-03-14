@@ -27,7 +27,12 @@
 
             <div class="user-content">
 
-                <div class="user-container">
+                <div
+                       infiniteScroll
+                        [infiniteScrollDistance]="2"
+                        (scrolled)="onScroll()"
+                        [scrollWindow]="false"
+                        class="user-container search-results">
                     
                     <ul class="user-list">
                         <li *ngFor="let contact of contactsList" class="user-item">
