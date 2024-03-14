@@ -5,35 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import * as fromAuth from "./auth/store/auth-reducers";
 import * as fromContacts from './contacts/store/contacts.reducer';
 import {AuthEffects} from "./auth/store/auth-effects";
 import {SharedModule} from "./shared/shared.module";
 import {ContactsEffects} from "./contacts/store/contacts.effects";
-import {HttpInterceptors} from "./http-interceptors";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    CoreModule,
     StoreModule.forRoot({auth: fromAuth._authReducer, contacts: fromContacts._contactsReducer}),
     EffectsModule.forRoot([AuthEffects, ContactsEffects]),
     SharedModule,
-    BrowserAnimationsModule,
-    HttpClientModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptors,
-      multi: true,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
