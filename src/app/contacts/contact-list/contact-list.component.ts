@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {AppReducer} from "../../app-reducer";
 import * as ContactsActions from '../store/contacts.actions';
+import {ContactsInterface} from "../interfaces/contacts.interface";
 
 @Component({
     selector: 'app-contact-list',
@@ -9,6 +10,10 @@ import * as ContactsActions from '../store/contacts.actions';
     styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent implements OnInit {
+    contactsList: ContactsInterface[] = [];
+    page = 0;
+    pageSize = 20;
+    totalCount = 0
     constructor(private store: Store<AppReducer>) {}
 
     ngOnInit() {
@@ -17,7 +22,10 @@ export class ContactListComponent implements OnInit {
 
         this.store.select('contacts').subscribe({
             next: (contacts) => {
-                console.log(contacts);
+                this.contactsList = contacts.contacts.data;
+                this.page = contacts.contacts.page;
+                this.pageSize = contacts.contacts.pageSize;
+                this.totalCount = contacts.contacts.totalCount;
             }
         })
     }

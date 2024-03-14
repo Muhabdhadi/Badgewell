@@ -12,7 +12,7 @@
 
                 <div class="breadcrumb-bottom">
 
-                    <p class="breadcrumb-title">Users List</p>
+                    <p class="breadcrumb-title">Contacts List</p>
 
                     <div>
                         <button class="breadcrumb-btn">+ New User</button>
@@ -30,48 +30,36 @@
                 <div class="user-container">
                     
                     <ul class="user-list">
-                        <li *ngFor="let user of []" class="user-item">
+                        <li *ngFor="let contact of contactsList" class="user-item">
                             <div class="user-list-left">
-<!--                                <p class="user-name">{{user.name}}</p>-->
+                                <p>
+                                    {{contact.name}}
+                                </p>
                             </div>
 
                             <div class="user-list-left">
-<!--                                <p class="user-name">{{user.email}}</p>-->
+                                <p>
+                                    {{contact.phone}}
+                                </p>
                             </div>
 
 
 
                             <div class="user-list-left">
-<!--                                <p class="user-name">{{user?.address?.street ? user.address?.street :  '-'}}</p>-->
+                                <img width="60px" [src]="contact.image" alt="contact-image">
                             </div>
 
 
                             <div class="user-list-left">
-<!--                                <p class="user-name">{{user?.phone ? user.phone : '-'}}</p>-->
+                                <p>
+                                    {{contact.createdAt | date: 'medium'}}
+                                </p>
                             </div>
 
                             <div class="user-list-left">
-<!--                                <p class="user-name">{{user?.company?.name ? user.company.name : '-'}}</p>-->
-                            </div>
-
-
-                            <div class="user-list-right">
-
-                                <div class="user-list-right-edits">
-
-                                    <div class="user-icon">
-                                        <img src="assets/images/user-list/icons8-edit.png" alt="edit">
-                                    </div>
-
-                                    <div class="user-icon">
-                                        <img src="assets/images/user-list/icons8-delete.png" alt="edit">
-                                    </div>
-
-                                </div>
-
-                                <div>
-                                    <img src="assets/images/user-list/icons8-right_4.png" alt="edit">
-                                </div>
+                                <p>
+                                    {{contact.updatedAt | date: 'medium'}}
+                                </p>
                             </div>
 
                         </li>
