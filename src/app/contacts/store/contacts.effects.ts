@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as ContactsActions from './contacts.actions';
-import {catchError, map, of, switchMap} from "rxjs";
+import {catchError, exhaustMap, map, of} from "rxjs";
 import {ContactsService} from "../services/contacts.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
@@ -9,7 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class ContactsEffects {
     fetchContacts = createEffect(() => this.actions$.pipe(
         ofType(ContactsActions.fetchContacts),
-        switchMap((action) => {
+        exhaustMap((action) => {
             return this.contactsService.getContacts({page: action.page, pageSize: action.size})
                 .pipe(
                     map((contactsResponse) =>
