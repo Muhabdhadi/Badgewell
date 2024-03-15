@@ -3,7 +3,8 @@
     &-card {
         display: flex;
         flex-direction: row;
-        width: 767px;
+        width: 53%;
+        min-width: 770px;
         margin:30px auto auto auto;
         background: #FFFFFF;
         box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2);
@@ -70,5 +71,30 @@
     input::placeholder {
         color: #7F8C8D;
         font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .login {
+
+        &-card {
+            width: 100%;
+            min-width: 0;
+            flex-direction: column;
+        }
+
+        &-left {
+            & > img {
+                width: 100%;
+            }
+        }
+
+        &-content {
+            padding: 60px 15px;
+        }
+    }
+
+    .form-control {
+        width: 100%
     }
 }
