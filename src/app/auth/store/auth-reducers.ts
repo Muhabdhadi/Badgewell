@@ -1,7 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import * as AuthActions from './auth.actions';
 import {AuthStateInterface} from "../interfaces/auth-state.interface";
-import {signup} from "./auth.actions";
 
 const authState: AuthStateInterface = {
     authErrorMessage: '',
@@ -18,7 +17,7 @@ export const _authReducer = createReducer(
 
     on(AuthActions.loginStart,
        AuthActions.signup,
-        (state, action) => ({
+        (state) => ({
             ...state,
             isLoading: true
         })
