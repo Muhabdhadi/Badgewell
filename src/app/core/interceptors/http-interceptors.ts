@@ -1,8 +1,8 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {catchError, concatMap, Observable, tap, throwError} from "rxjs";
-import {AuthService} from "../auth/services/auth.service";
-import {AuthHelperService} from "../auth/services/auth-helper.service";
+import {AuthService} from "../../auth/services/auth.service";
+import {AuthHelperService} from "../../auth/services/auth-helper.service";
 import {Router} from "@angular/router";
 
 @Injectable()

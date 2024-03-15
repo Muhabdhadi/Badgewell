@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {HttpInterceptors} from "./http-interceptors";
+import {HttpInterceptors} from "./interceptors/http-interceptors";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "../app-routing.module";
 import {BrowserModule} from "@angular/platform-browser";

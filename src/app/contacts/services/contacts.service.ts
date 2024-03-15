@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {UtilitiesService} from "../../shared/utilities.service";
+import {UtilitiesService} from "../../shared/services/utilities.service";
 import {Observable} from "rxjs";
 import {ContactsResponseInterface} from "../interfaces/contacts-response.interface";
 
