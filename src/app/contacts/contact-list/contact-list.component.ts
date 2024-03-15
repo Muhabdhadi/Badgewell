@@ -13,7 +13,8 @@ export class ContactListComponent implements OnInit {
     contactsList: ContactsInterface[] = [];
     page = 0;
     pageSize = 20;
-    totalCount = 0
+    totalCount = 0;
+    isLoading = false;
     constructor(private store: Store<AppReducer>) {}
 
     ngOnInit() {
@@ -22,6 +23,7 @@ export class ContactListComponent implements OnInit {
 
         this.store.select('contacts').subscribe({
             next: (contacts) => {
+                this.isLoading = contacts.isLoading;
                 this.contactsList = contacts.contacts.data;
                 this.page = contacts.contacts.page;
                 this.pageSize = contacts.contacts.pageSize;

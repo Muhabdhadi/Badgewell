@@ -17,7 +17,7 @@ import {CoreModule} from "./core/core.module";
     CoreModule,
     StoreModule.forRoot({auth: fromAuth._authReducer, contacts: fromContacts._contactsReducer}),
     EffectsModule.forRoot([AuthEffects, ContactsEffects]),
-    SharedModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

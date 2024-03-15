@@ -3,13 +3,14 @@ import {ContactListComponent} from "./contact-list/contact-list.component";
 import {ContactsRoutingModule} from "./contacts-routing.module";
 import {CommonModule} from "@angular/common";
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
     declarations: [ContactListComponent],
     imports: [
         ContactsRoutingModule,
-        CommonModule,
+        SharedModule,
         InfiniteScrollModule
     ]
 })
