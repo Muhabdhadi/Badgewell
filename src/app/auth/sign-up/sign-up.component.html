@@ -54,7 +54,10 @@
                                 </p>
 
                                 <div>
-                                    <button [disabled]="authForm.invalid" type="submit" class="login-btn">{{isLoginMode ? 'Login' : 'Sign up'}}</button>
+                                    <button type="submit" class="login-btn">
+                                        {{isLoginMode ? 'Login' : 'Sign up'}}
+                                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    </button>
                                 </div>
 
                             </div>

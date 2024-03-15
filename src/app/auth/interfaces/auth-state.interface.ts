@@ -4,5 +4,6 @@ export interface AuthStateInterface {
     refreshToken: string,
     authSuccessMessage: string
     accessTokenExpirationDate: Date | null,
-    refreshTokenExpirationDate: Date | null
+    refreshTokenExpirationDate: Date | null,
+    isLoading: boolean
 }

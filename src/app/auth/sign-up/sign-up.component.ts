@@ -13,6 +13,7 @@ import {AuthInterface} from "../interfaces/auth.interface";
 })
 export class SignUpComponent implements OnInit {
     isLoginMode = false;
+    isLoading = false;
     authForm = this.fb.group({
         username: ['', [Validators.required, Validators.minLength(3)]],
         password: ['', [Validators.required, Validators.minLength(6)]]
@@ -26,7 +27,7 @@ export class SignUpComponent implements OnInit {
 
         this.store$.select('auth').subscribe({
             next: (auth) => {
-                console.log(auth);
+                this.isLoading = auth.isLoading;
             }
         })
         this.activatedRoute.url.subscribe({

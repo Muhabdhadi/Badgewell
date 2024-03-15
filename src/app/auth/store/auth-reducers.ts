@@ -1,6 +1,7 @@
 import {createReducer, on} from "@ngrx/store";
 import * as AuthActions from './auth.actions';
 import {AuthStateInterface} from "../interfaces/auth-state.interface";
+import {signup} from "./auth.actions";
 
 const authState: AuthStateInterface = {
     authErrorMessage: '',
@@ -8,16 +9,27 @@ const authState: AuthStateInterface = {
     accessToken: '',
     accessTokenExpirationDate: null,
     refreshToken: '',
-    refreshTokenExpirationDate: null
+    refreshTokenExpirationDate: null,
+    isLoading: false
 }
 
 export const _authReducer = createReducer(
     authState,
 
+    on(AuthActions.loginStart,
+       AuthActions.signup,
+        (state, action) => ({
+            ...state,
+            isLoading: true
+        })
+    ),
+
+
     on(AuthActions.authFailed,
         (state, action) => ({
             ...state,
-            authErrorMessage: action.message
+            authErrorMessage: action.message,
+            isLoading: false
         })
     ),
 
@@ -25,7 +37,8 @@ export const _authReducer = createReducer(
         (state, action) => ({
             ...state,
             authErrorMessage: '',
-            authSuccessMessage: action.message
+            authSuccessMessage: action.message,
+            isLoading: false
         })
     ),
 
@@ -36,7 +49,9 @@ export const _authReducer = createReducer(
             accessToken: action.accessToken,
             accessTokenExpirationDate: action.accessTokenExpirationDate,
             refreshToken: action.refreshToken,
-            refreshTokenExpirationDate: action.refreshTokenExpirationDate
+            refreshTokenExpirationDate: action.refreshTokenExpirationDate,
+            isLoading: false
+
         })
     ),
 
@@ -47,6 +62,7 @@ export const _authReducer = createReducer(
         accessToken: '',
         accessTokenExpirationDate: null,
         refreshToken: '',
-        refreshTokenExpirationDate: null
+        refreshTokenExpirationDate: null,
+        isLoading: false
     }))
 )
