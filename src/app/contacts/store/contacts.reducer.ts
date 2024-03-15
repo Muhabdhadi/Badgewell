@@ -1,8 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import {ContactsStateInterface} from "../interfaces/contacts-state.interface";
 import * as ContactsActions from './contacts.actions';
-import {fetchContacts, fetchContactsFailed} from "./contacts.actions";
-import {state} from "@angular/animations";
 
 const contactsState: ContactsStateInterface = {
     isLoading: false,
@@ -17,7 +15,7 @@ export const _contactsReducer = createReducer(
     contactsState,
 
     on(ContactsActions.fetchContacts,
-        (state, action) => ({
+        (state) => ({
         ...state,
             isLoading: true
     })
@@ -36,7 +34,7 @@ export const _contactsReducer = createReducer(
         })),
 
     on(ContactsActions.fetchContactsFailed,
-        (state, action) => ({
+        (state) => ({
             ...state,
             isLoading: false
         })
